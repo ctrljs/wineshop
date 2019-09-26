@@ -10,8 +10,8 @@ export const CartCon = React.createContext()
 const MyProvider = ({ children }) => {
   const [mode, setMode] = useState(false)
 
-  /*  const [cartItems, setCartItems] = useState([]) */
-  const [cartItems, setCartItems] = useState(() => {
+  const [cartItems, setCartItems] = useState([])
+  /*  const [cartItems, setCartItems] = useState(() => {
     let localCart
     try {
       localCart = JSON.parse(localStorage.getItem("wine_cart"))
@@ -20,15 +20,15 @@ const MyProvider = ({ children }) => {
     }
     if (!localCart || !Array.isArray(localCart)) return []
     return localCart
-  })
+  }) */
 
-  useEffect(() => {
+  /*   useEffect(() => {
     try {
       localStorage.setItem("wine_cart", JSON.stringify(cartItems))
     } catch (err) {
       console.error(err)
     }
-  }, cartItems)
+  }, cartItems) */
 
   function addItem(itm) {
     const currentItem = cartItems.find(item => item.item_id === itm.item_id)
