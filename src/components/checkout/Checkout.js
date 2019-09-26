@@ -38,59 +38,6 @@ const Checkout = () => {
     params.append("total_amount", total)
     /*   params.append("item_id", itemId)
     params.append("description", description) */
-    axios({
-      method: "post",
-      url: "http://localhost:3000/wineorder",
-      data: params,
-    })
-      .then(order_res => {
-        // Handle success.
-        console.log("Order Data", order_res)
-        var options = {
-          key: "rzp_test_F8GyQgYJwEzutm", // Enter the Key ID generated from the Dashboard
-          /*   amount: '50000', // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise or INR 500.
-  currency: 'INR', */
-          name: "Wines Co.",
-          description: "Payment from Client",
-          image: "/logo.png",
-          order_id: order_res.data.id, //This is a sample Order ID. Create an Order using Orders API. (https://razorpay.com/docs/payment-gateway/orders/integration/#step-1-create-an-order). Refer the Checkout form table given below
-          handler: function(response) {
-            console.log("Gateway response", response)
-
-            const param_complete = new URLSearchParams()
-            param_complete.append("razorPayResponse", JSON.stringify(response))
-            param_complete.append("receipt", order_res.data.receipt)
-            axios({
-              method: "post",
-              url: `http://localhost:3000/completeorder`,
-              data: param_complete,
-            })
-              .then(res => {
-                console.log("response from complete order", res)
-                clearCart()
-                navigate("/thankyou")
-              })
-              .catch(err => {})
-          },
-          prefill: {
-            name: userInput.firstName + " " + userInput.lastName,
-            email: userInput.emailAddress,
-            contact: userInput.mobileNumber,
-          },
-          notes: {
-            address: "note value",
-          },
-          theme: {
-            color: "#F37254",
-          },
-        }
-
-        let rzp = new window.Razorpay(options)
-        rzp.open()
-      })
-      .catch(err => {
-        console.log("Error", err)
-      })
   }
 
   return (
