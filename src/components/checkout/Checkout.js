@@ -96,15 +96,15 @@ const Checkout = () => {
 
   function paymentHandler2() {
     const params = new URLSearchParams()
-    params.append("cartItems", JSON.stringify(cartItems))
-    params.append("shippingInfo", JSON.stringify(userInput))
-    params.append("total_amount", total)
+    params.append("first_name", "Hamrosh")
+    params.append("first_name", "Vachakkal")
+
     /*   params.append("item_id", itemId)
     params.append("description", description) */
 
     axios({
       method: "post",
-      url: "https://silly-allen-8aa65f.netlify.com/.netlify/functions/test",
+      url: "./.netlify/functions/test",
       data: params,
     })
       .then(order_res => {
