@@ -104,7 +104,7 @@ const Checkout = () => {
 
     axios({
       method: "post",
-      url: "./.netlify/functions/test",
+      url: "https://silly-allen-8aa65f.netlify.com/.netlify/functions/test",
       data: params,
     })
       .then(order_res => {
