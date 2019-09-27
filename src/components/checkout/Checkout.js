@@ -41,7 +41,7 @@ const Checkout = () => {
 
     axios({
       method: "post",
-      url: "/wineorder",
+      url: "./.netlify/functions/hello-world",
       data: params,
     })
       .then(order_res => {
