@@ -99,25 +99,6 @@ const Checkout = () => {
       })
   }
 
-  function paymentHandler2() {
-    const params = new URLSearchParams()
-    params.append("first_name", "Hamrosh")
-    params.append("first_name", "Vachakkal")
-
-    /*   params.append("item_id", itemId)
-    params.append("description", description) */
-
-    axios({
-      method: "post",
-      url: "./.netlify/functions/test",
-      data: params,
-    })
-      .then(order_res => {
-        console.log("response from function", order_res)
-      })
-      .catch(err => {})
-  }
-
   return (
     <div className="site-section">
       <div className="container">
@@ -348,13 +329,6 @@ const Checkout = () => {
                       className="btn btn-primary btn-lg btn-block"
                     >
                       Place Order
-                    </button>
-
-                    <button
-                      onClick={paymentHandler2}
-                      className="btn btn-primary btn-lg btn-block"
-                    >
-                      Check Function
                     </button>
                   </div>
                 </div>
