@@ -24,6 +24,7 @@
     "razorpay": "^2.0.5",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-loading-overlay": "^1.0.1",
     "react-sticky": "^6.0.3"
   },
   "devDependencies": {

@@ -1,8 +1,10 @@
-import React, { useContext, useEffect, useReducer } from "react"
+import React, { useContext, useEffect, useState, useReducer } from "react"
 import axios from "axios"
+
 import { CartCon } from "../cart/MyProvider"
 import { navigate } from "gatsby"
 const Checkout = () => {
+  const [isActive, setIsActive] = useState(false)
   const { cartItems, total, clearCart } = useContext(CartCon)
   const [userInput, setUserInput] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
@@ -38,7 +40,7 @@ const Checkout = () => {
     params.append("total_amount", total) */
     /*   params.append("item_id", itemId)
     params.append("description", description) */
-
+    setIsActive(true)
     axios({
       method: "post",
       url: "./.netlify/functions/hello-world",
@@ -49,7 +51,7 @@ const Checkout = () => {
       },
     })
       .then(order_res => {
-        // Handle success.
+        setIsActive(false)
         console.log("Order Data", order_res)
         var options = {
           key: "rzp_test_F8GyQgYJwEzutm", // Enter the Key ID generated from the Dashboard
@@ -327,8 +329,12 @@ const Checkout = () => {
                     <button
                       onClick={paymentHandler}
                       className="btn btn-primary btn-lg btn-block"
+                      disabled={isActive}
                     >
-                      Place Order
+                      Checkout
+                      {isActive && (
+                        <img src="/loading.gif" width="30px" height="30px" />
+                      )}
                     </button>
                   </div>
                 </div>
