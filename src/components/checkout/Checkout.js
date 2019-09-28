@@ -32,17 +32,21 @@ const Checkout = () => {
   }, [])
 
   function paymentHandler() {
-    const params = new URLSearchParams()
+    /*  const params = new URLSearchParams()
     params.append("cartItems", JSON.stringify(cartItems))
     params.append("shippingInfo", JSON.stringify(userInput))
-    params.append("total_amount", total)
+    params.append("total_amount", total) */
     /*   params.append("item_id", itemId)
     params.append("description", description) */
 
     axios({
       method: "post",
       url: "./.netlify/functions/hello-world",
-      data: params,
+      data: {
+        shippingInfo: userInput,
+        cartItems: cartItems,
+        total_amount: total,
+      },
     })
       .then(order_res => {
         // Handle success.
@@ -58,13 +62,14 @@ const Checkout = () => {
           handler: function(response) {
             console.log("Gateway response", response)
 
-            const param_complete = new URLSearchParams()
-            param_complete.append("razorPayResponse", JSON.stringify(response))
-            param_complete.append("receipt", order_res.data.receipt)
             axios({
               method: "post",
-              url: `http://localhost:3000/completeorder`,
-              data: param_complete,
+              url: `./.netlify/functions/completeorder`,
+
+              data: {
+                razorPayResponse: response,
+                receipt: order_res.data.receipt,
+              },
             })
               .then(res => {
                 console.log("response from complete order", res)

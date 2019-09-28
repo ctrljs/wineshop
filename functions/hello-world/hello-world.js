@@ -5,19 +5,10 @@ const axios = require("axios")
 
 exports.handler = (event, context, callback) => {
   try {
-    console.log("data from link", event.body)
+    let { shippingInfo, cartItems, total_amount } = JSON.parse(event.body)
 
-    callback(null, {
-      statusCode: 200,
-      body: "Hello, World",
-    })
-    return
+    let paisa_amount = total_amount * 100
 
-    let shippingInfo = event.body.shippingInfo
-    /*  let cartItems = JSON.parse(event.body.cartItems)
-    let totalamount = event.body.total_amount
-    let paisa_amount = totalamount * 100 */
-    console.log("data from link", shippingInfo)
     axios
       .post("https://sharekard.com/auth/local", {
         identifier: "hamrosh",
@@ -59,11 +50,14 @@ exports.handler = (event, context, callback) => {
             }
             rzp.orders.create(options, function(err, order) {
               console.log(order)
-              res.send(order)
+              callback(null, {
+                statusCode: 200,
+                body: JSON.stringify(order),
+              })
             })
           })
           .catch(err => {
-            console.log("Error", err)
+            callback(err)
           })
       })
       .catch(error => {

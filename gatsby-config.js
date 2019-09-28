@@ -6,6 +6,7 @@ module.exports = {
         apiURL: `https://www.sharekard.com`,
         queryLimit: 1000, // Default to 100
         contentTypes: [`Wines`],
+        // Possibility to login with a strapi user, when content types are not publically available (optional).
       },
     },
     `gatsby-transformer-sharp`,
