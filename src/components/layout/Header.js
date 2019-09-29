@@ -1,6 +1,7 @@
 import React from "react"
 import img1 from "../../images/logo.png"
-import { Link } from "gatsby"
+import AniLink from "gatsby-plugin-transition-link/AniLink"
+
 const Header = () => {
   return (
     <>
@@ -42,25 +43,49 @@ const Header = () => {
                 >
                   <ul className="site-menu main-menu js-clone-nav mx-auto d-none pl-0 d-lg-block border-none">
                     <li>
-                      <Link to="/" className="nav-link text-left">
+                      <AniLink
+                        fade
+                        hex="#ff5733"
+                        duration={0.3}
+                        to="/"
+                        className="nav-link text-left"
+                      >
                         Home
-                      </Link>
+                      </AniLink>
                     </li>
                     <li>
-                      <Link to="/about" className="nav-link text-left">
+                      <AniLink
+                        fade
+                        hex="#ff5733"
+                        duration={0.3}
+                        to="/about"
+                        className="nav-link text-left"
+                      >
                         About
-                      </Link>
+                      </AniLink>
                     </li>
 
                     <li>
-                      <Link to="/shop" className="nav-link text-left">
+                      <AniLink
+                        fade
+                        hex="#ff5733"
+                        duration={0.3}
+                        to="/shop"
+                        className="nav-link text-left"
+                      >
                         Shop
-                      </Link>
+                      </AniLink>
                     </li>
                     <li>
-                      <Link to="/contact" className="nav-link text-left">
+                      <AniLink
+                        fade
+                        hex="#ff5733"
+                        duration={0.3}
+                        to="/contact"
+                        className="nav-link text-left"
+                      >
                         Contact
-                      </Link>
+                      </AniLink>
                     </li>
                   </ul>
                 </nav>

@@ -11,7 +11,7 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-
+    `gatsby-plugin-transition-link`,
     {
       resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {
